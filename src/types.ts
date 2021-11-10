@@ -25,7 +25,7 @@ export enum EndpointStatusEnum {
 export interface IEndpoint {
   url: string;
   duration: number;
-  status: EndpointStatusEnum | string;
+  status: EndpointStatusEnum;
 }
 export interface IconProps {
   children: React.ReactNode;
