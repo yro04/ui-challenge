@@ -1,5 +1,4 @@
 import { get } from "lodash";
-import React from "react";
 import { BrowserRouter, Switch, Route, useParams } from "react-router-dom";
 import { routes } from ".";
 import { SideNav } from "../components/SideNav";
@@ -16,7 +15,7 @@ export function OrganizationRouter() {
         <div className="w-60">
         <SideNav organizationId={id}></SideNav>
         </div>
-        <div className="flex-1 m-8 text-white">
+        <div className="flex-1 m-8">
           <Switch>
             <Route
               path={[routes.organization, routes.testReports]}

@@ -11,12 +11,12 @@ export const Organizations: React.FunctionComponent = () => {
   const organizations: IOrganization[] = contents;
 
   return (
-    <div className="w-full min-h-full flex flex-col">
+    <div className="w-full h-screen flex flex-col">
       <Header />
-      <div className="flex flex-1 flex-col justify-center items-center text-white">
-        <h1 className="text-3xl font-bold ">Organizations</h1>
+      <div className="flex flex-1 flex-col justify-center items-center">
+        <h1 className="text-purple-800 text-3xl font-bold">Organizations</h1>
         <br />
-        <p>Pick the organization you want to access to</p>
+        <p className=" text-fuchsia-600 text-lg font-medium">Pick the organization you want to access to</p>
         {state === "loading" || state === "hasError" ? null : (
           <div className="flex flex-col gap-8 py-16 w-full px-8 md:w-1/2 md:px-0">
             {organizations.map((organization) => (

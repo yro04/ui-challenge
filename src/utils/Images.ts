@@ -9,6 +9,8 @@ import { ReactComponent as GlobeAlt } from "../assets/img/globe-alt.svg";
 import { ReactComponent as Logo } from "../assets/img/logo.svg";
 import { ReactComponent as XCircle } from "../assets/img/x-circle.svg";
 import { ReactComponent as ChevronRight } from "../assets/img/chevron-right.svg";
+import { ReactComponent as XCircleSolid } from "../assets/img/x-circle-solid.svg";
+import { ReactComponent as CheckCircleSolid } from "../assets/img/check-circle-solid.svg";
 
 export {
   Branch,
@@ -21,5 +23,7 @@ export {
   GlobeAlt,
   Logo,
   XCircle,
-  ChevronRight
-}
+  ChevronRight,
+  XCircleSolid,
+  CheckCircleSolid,
+};

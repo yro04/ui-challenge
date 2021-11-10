@@ -6,8 +6,12 @@ import { useRecoilValueLoadable } from "recoil";
 import { Badge, ReportCard, ReportEndpoint } from "../components";
 import { routes } from "../router";
 import { reportDetailsState } from "../state/reportDetails";
-import { IEndpoint } from "../types";
-import { ChevronRight } from "../utils/Images";
+import { EndpointStatusEnum, IEndpoint, ReportDetailsResultProps } from "../types";
+import {
+  CheckCircleSolid,
+  ChevronRight,
+  XCircleSolid,
+} from "../utils/Images";
 
 export function ReportDetails() {
   const params = useParams();
@@ -31,33 +35,21 @@ export function ReportDetails() {
     setTextFilter(e.target.value.trim());
   }
 
-  // const fuseData = useMemo(() => {
-  //   return FuseConfiguration(contents, {
-  //     keys: ["example"],
-  //   });
-  // }, [contents]);
-
-  // const resultsSuccess = useMemo(() => {
-  //   Fuse
-  // }, [textFilter])
-
-  // const resultsFalse = useMemo(() => {
-  //   Fuse
-  // }, [textFilter])
-
   return (
     <div>
       <div className="flex gap-2">
         <p className="text-xl flex items-center">
           <Link
             to={routes.organization.replace(":id", organizationId.toString())}
+            className="text-indigo-600 pr-6"
           >
             Test Reports
-          </Link>{" "}
-          <ChevronRight /> Execution #{reportId}
+          </Link>
+          <ChevronRight />
+          <span className="px-2 pr-6">Execution #{reportId}</span>
         </p>
         {endpoints.length === 0 ? null : endpoints.filter(
-            (e) => e.status !== "SUCCESS"
+            (e) => e.status !== EndpointStatusEnum.SUCCESS
           ).length > 0 ? (
           <Badge success={false} title="FAILED" />
         ) : (
@@ -71,7 +63,7 @@ export function ReportDetails() {
       <br />
       <br />
       <input
-        className="w-full text-black border-4 border-gray-500 rounded-md"
+        className="w-full text-black border-2 border-gray-400 placeholder-gray-300 rounded-md focus:border-purple-800"
         type="search"
         onChange={onChange}
         placeholder="Filter by endpoint..."
@@ -81,38 +73,47 @@ export function ReportDetails() {
       <ReportDetailsResult
         testsName="Failed Tests"
         endpoints={endpoints.filter(
-          (e) => e.status !== "SUCCESS" && e.url.includes(textFilter)
+          (e) => e.status !== EndpointStatusEnum.SUCCESS && e.url.includes(textFilter)
         )}
         total={endpoints.length}
+        icon={
+          <div className="text-red-600">
+            <XCircleSolid />
+          </div>
+        }
       />
       <br />
       <br />
       <ReportDetailsResult
         testsName="Passed Tests"
         endpoints={endpoints.filter(
-          (e) => e.status === "SUCCESS" && e.url.includes(textFilter)
+          (e) => e.status === EndpointStatusEnum.SUCCESS && e.url.includes(textFilter)
         )}
         total={endpoints.length}
+        icon={
+          <div className="text-green-600">
+            <CheckCircleSolid />
+          </div>
+        }
       />
     </div>
   );
 }
 
-export interface ReportDetailsResultProps {
-  testsName: string;
-  endpoints: IEndpoint[];
-  total: number;
-}
+
 
 export const ReportDetailsResult: React.FunctionComponent<ReportDetailsResultProps> =
-  ({ testsName, endpoints, total }) => {
+  ({ testsName, endpoints, total, icon }) => {
     return (
       <div>
         {endpoints.length > 0 && (
           <div>
-            <p className="text-3xl">
-              {testsName} ({endpoints.length} / {total})
-            </p>
+            <div className="flex flex-row items-center gap-2">
+              {icon}
+              <p className="text-xl text-gray-500">
+                {testsName} ({endpoints.length} / {total})
+              </p>
+            </div>
             <br />
             <div className="gap-2 flex flex-col">
               {endpoints.map((endpoint) => (

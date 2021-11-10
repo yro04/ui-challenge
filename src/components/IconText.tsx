@@ -1,9 +1,5 @@
-import React from "react";
+import { IconProps } from "../types";
 
-export interface IconProps {
-  children: React.ReactNode;
-  icon: React.ReactNode;
-}
 
 export function IconText({ icon, children }: IconProps) {
   return (

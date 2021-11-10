@@ -1,5 +1,4 @@
 import { get } from "lodash";
-import React from "react";
 import { useParams } from "react-router";
 import { useRecoilValueLoadable } from "recoil";
 import { ReportItem } from "../components";
@@ -18,7 +17,7 @@ export function Reports() {
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <p className="text-3xl">Test Reports</p>
+      <p className="text-2xl text-indigo-600">Test Reports</p>
       <br />
       {reports.map((report) => (
         <ReportItem

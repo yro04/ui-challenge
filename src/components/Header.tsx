@@ -1,9 +1,7 @@
-import { Logo } from "../utils/Images";
-
 export function Header() {
   return (
-    <header className="p-8">
-      <Logo />
+    <header className="pt-8">
+      <h1 className="text-5xl font-bold">Levo</h1>
     </header>
   );
 }

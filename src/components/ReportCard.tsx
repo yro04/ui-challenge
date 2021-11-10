@@ -1,6 +1,5 @@
 import { formatDistance } from "date-fns";
-import React from "react";
-import { IReportDetails } from "../types";
+import { ReportCardProps } from "../types";
 import {
   Branch,
   Calendar,
@@ -11,16 +10,12 @@ import {
 } from "../utils/Images";
 import { IconText } from "./IconText";
 
-export interface ReportCardProps {
-  report: IReportDetails;
-}
-
 export function ReportCard({
   report: { end_date, duration, branch, github_user, commit, environment_url },
 }: ReportCardProps) {
   return (
-    <div className="w-auto inline-block rounded-md border-gray-500 border-2">
-      <div className="flex flex-col items-start gap-x-1 px-3 py-2 bg-gray-500">
+    <div className="w-auto inline-block rounded-md">
+      <div className="flex flex-col items-start gap-1 px-4 py-3 bg-blueGray-50 text-gray-500">
         <div className="flex justify-between items-start gap-x-5">
           <IconText icon={<Clock />}>
             Duration: {Math.round(duration / 60000)}m

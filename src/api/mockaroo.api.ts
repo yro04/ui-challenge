@@ -15,26 +15,29 @@ interface MockarooAPI {
 }
 
 export const mockarooApi: MockarooAPI = {
-  getAllOrganization() {
-    return axios
-      .get(`${baseUrl}/organizations.json?key=${key}`)
-      .then((res) => res.data);
+  async getAllOrganization() {
+    const res = await axios
+      .get(`${baseUrl}/organizations.json?key=${key}`);
+    return res.data;
   },
-  getOrganizationDetails(id) {
-    return axios
-      .get(`${baseUrl}/organizations/${id}.json?key=${key}`)
-      .then((res) => res.data);
+
+  async getOrganizationDetails(id) {
+    const res = await axios
+      .get(`${baseUrl}/organizations/${id}.json?key=${key}`);
+    return res.data;
   },
-  getAllReports(organizationId) {
-    return axios
-      .get(`${baseUrl}/organizations/${organizationId}/reports.json?key=${key}`)
-      .then((res) => res.data);
+
+  async getAllReports(organizationId) {
+    const res = await axios
+      .get(`${baseUrl}/organizations/${organizationId}/reports.json?key=${key}`);
+    return res.data;
   },
-  getReportDetails(organizationId, reportId) {
-    return axios
+  
+  async getReportDetails(organizationId, reportId) {
+    const res = await axios
       .get(
         `${baseUrl}/organizations/${organizationId}/reports/${reportId}/details.json?key=${key}`
-      )
-      .then((res) => res.data);
+      );
+    return res.data;
   },
 };
